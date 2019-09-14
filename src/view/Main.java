@@ -1,3 +1,4 @@
+package view;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -10,6 +11,9 @@ import javax.swing.border.EmptyBorder;
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamPanel;
 import com.github.sarxos.webcam.WebcamResolution;
+
+import model.Person;
+import util.ImgDiffPercentage;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -35,9 +39,6 @@ public class Main {
   private String action;
   private Person currentPerson;
 
-  /**
-   * Launch the application.
-   */
   public static void main(String[] args) {
     EventQueue.invokeLater(new Runnable() {
       public void run() {
@@ -94,13 +95,14 @@ public class Main {
   }
 
   private void setupContent() {
-    lblStatus = new JLabel();
+    lblStatus = new JLabel("Sistema bloqueado");
     content = new JPanel();
     content.setBounds(129, 0, 321, 278);
     content.setLayout(new BoxLayout(content, BoxLayout.X_AXIS));
     content.add(Box.createHorizontalGlue());
     content.add(lblStatus);
     content.add(Box.createHorizontalGlue());
+    content.setBackground(Color.YELLOW);
     layout.add(content);
   }
 
@@ -135,6 +137,8 @@ public class Main {
       public void actionPerformed(ActionEvent e) {
         action = "login";
         currentPerson = null;
+        tfPersonName.setVisible(false);
+        webcam.open();
         webcamPanel.start();
         webcamPopup.setVisible(true);
       }
@@ -147,6 +151,8 @@ public class Main {
     btnRegister.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         action = "create";
+        tfPersonName.setVisible(true);
+        webcam.open();
         webcamPanel.start();
         webcamPopup.setVisible(true);
       }
@@ -167,6 +173,7 @@ public class Main {
           login();
 
         webcamPanel.stop();
+        webcam.close();
         webcamPopup.setVisible(false);
         action = null;
       }
