@@ -109,6 +109,8 @@ public class Main {
     btnLogin.addActionListener(new ActionListener() {
     public void actionPerformed(ActionEvent e) {
         new CamFrame(false) {
+			private static final long serialVersionUID = 1L;
+
 			public void shotCallback(String name, BufferedImage image) {
                 login(image);
             }
@@ -123,6 +125,8 @@ public class Main {
     btnRegister.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         new CamFrame() {
+			private static final long serialVersionUID = 1L;
+
 			public void shotCallback(String name, BufferedImage image) {
                 createPerson(name, image);
             }
@@ -155,7 +159,6 @@ public class Main {
   private boolean findPerson(Person person, BufferedImage image) {
     try {
       ImgDiffPercentage idp = new ImgDiffPercentage(image, person.getImg());
-      System.out.println(idp.getDifferencePercent() < 5.0);
 
       if (idp.getDifferencePercent() < 5.0) {
     	  File saved = new File("/home/joaovitoras/Desktop/saved.jpg");
