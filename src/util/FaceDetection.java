@@ -8,7 +8,7 @@ import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
 
 public class FaceDetection {
-  private String xmlFile = "/usr/share/opencv4/lbpcascades/lbpcascade_frontalface.xml";
+  private String xmlFile = "/usr/share/opencv4/haarcascades/haarcascade_frontalcatface.xml";
   private CascadeClassifier classifier = new CascadeClassifier(xmlFile);
   private MatOfRect faceDetections = new MatOfRect();
   private Mat imageMat;
@@ -35,7 +35,7 @@ public class FaceDetection {
   
   public Mat getImage() {
 	  Mat croppedImage = new Mat(imageMat, rectCrop);
-	  Size sz = new Size(100,100);
+	  Size sz = new Size(300, 300);
 	  Imgproc.resize( croppedImage, croppedImage, sz );
 
 	  return croppedImage;
