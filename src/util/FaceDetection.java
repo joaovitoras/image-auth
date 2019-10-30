@@ -8,7 +8,7 @@ import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
 
 public class FaceDetection {
-  private String xmlFile = "/usr/share/opencv4/haarcascades/haarcascade_frontalcatface.xml";
+  private String xmlFile = "/usr/share/opencv4/haarcascades/haarcascade_frontalface_default.xml";
   private CascadeClassifier classifier = new CascadeClassifier(xmlFile);
   private MatOfRect faceDetections = new MatOfRect();
   private Mat imageMat;
